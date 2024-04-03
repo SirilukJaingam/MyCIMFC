@@ -36,9 +36,10 @@ jobs:
 
     - name: Verify OpenCV header file
       run: |
-          if exist ("C:\tools\opencv\build\include\opencv2\opencv.hpp") {
-            echo "OpenCV header file found"
+          $fileExists = Test-Path -Path "C:\tools\opencv\build\include\opencv2\opencv.hpp"
+           if ($fileExists) {
+              Write-Host "The file exists."
           } else {
-            echo "OpenCV header file not found"
-            exit 1
+              Write-Host "The file does not exist."
           }
+

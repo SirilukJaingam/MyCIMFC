@@ -33,6 +33,12 @@ jobs:
     - name: Install OpenCV dependencies
       run: |
           choco install opencv --version 4.5.1 --params "'/IncludeDir:C:\tools\opencv\build\include /LibDir:C:\tools\opencv\build\x64\vc14\lib'"
-    - name: List OpenCV include directory
-      run: cd C:/tools 
-           dir /ad
+
+    - name: Verify OpenCV header file
+      run: |
+          if exist "C:\tools\opencv\build\include\opencv2\opencv.hpp" (
+            echo "OpenCV header file found"
+          ) else (
+            echo "OpenCV header file not found"
+            exit 1
+          )

@@ -30,16 +30,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install OpenCV dependencies
+    - name: Install Test
       run: |
-          choco install opencv --version 4.5.1 --params "'/IncludeDir:C:\tools\opencv\build\include /LibDir:C:\tools\opencv\build\x64\vc14\lib'"
+          dotnet add package Microsoft.TestPlatform
 
-    - name: Verify OpenCV header file
+    - name: run test
       run: |
-          $fileExists = Test-Path -Path "C:\tools\opencv\build\x64\vc14\..\..\include"
-           if ($fileExists) {
-              Write-Host "The file exists."
-          } else {
-              Write-Host "The file does not exist."
-          }
+          vstest.console.exe
 

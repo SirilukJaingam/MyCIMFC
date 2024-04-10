@@ -34,16 +34,10 @@ jobs:
     - name: Install CMake
       uses: lukka/get-cmake@latest
 
-    # - name: Install VTK dependencies
-    #   run: |
-    #     bash .github/workflows/build_vtk.sh
     - name: Clone VTK repository
-      run: git clone https://gitlab.kitware.com/vtk/vtk.git
+      run: git clone https://github.com/SirilukJaingam/VTKLib.git
 
-    - name: Build VTK
+    - name: check dir
       run: |
-        mkdir vtk-build
-        cd vtk-build
-        cmake -DVTK_USE_MFC=ON ../vtk
-        cmake --build . --config Release
+        ls
   
